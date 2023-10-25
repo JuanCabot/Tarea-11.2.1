@@ -7,7 +7,7 @@
 
 </head>
 <body>
-    <form action="" method="post">
+    <form action="https://jsonplaceholder.typicode.com/users" method="post">
     <ul>
         <li>
         <label for="nombre">Nombre:</label>
@@ -24,7 +24,7 @@
         <input type="date" id="nacimiento" name="fecha_nacimiento"></input>    
         </li>
 
-        <button type="submit" id="boton">Enviar</button>
+        <button type="button" id="boton" onclick="postData()">Enviar</button>
 
     </ul>
     </form>

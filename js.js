@@ -1,31 +1,36 @@
-let boton = document.getElementById("boton");
-const URL = "https://jsonplaceholder.typicode.com/users";
 
-
- function evento(){
-    let nombre = document.getElementById(nombre);
-    let apellido = document.getElementById(apellido);
-    let nacimiento = document.getElementById(nacimiento);
+function postData() {
+  const nombre = document.getElementById("nombre").value;
+  const apellido = document.getElementById("apellido").value;
+  const nacimiento = document.getElementById("nacimiento").value;
     
-    let usuario = {nombre: nombre.value,
-                apellido: apellido.value,
-                fechaNacimiento: nacimiento.value};
+  let usuario = {nombre: nombre,
+                apellido: apellido,
+                fechaNacimiento: nacimiento};
 
-    const opciones = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(usuario)}
+    fetch('https://jsonplaceholder.typicode.com/users', {
+          method: 'POST',
+          headers: {
+          'Content-Type': 'application/json'},
+          body: JSON.stringify(usuario)
+          })
+          .then(response => response.json())
+          .then(data => {
+          console.log('Respuesta del servidor:', usuario);
+          alert('Datos enviados exitosamente');
+          })
+          .catch(error => {
+          console.error('Error al enviar los datos:', error);
+          alert('Error al enviar los datos');
+              });
+          }
+          
+          console.log();
+
+
+
+
     
-    fetch(URL,opciones)
-        .then(response => {
-            if (response.ok) {
-              console.log("Informacion enviada correctamente");
-            } else {
-              throw new Error('Error en el posteo de información');
-            }})
-        .catch(error => {
-            console.error('Error:', error);
-          });
-    }
 
-    boton.addEventListener ('click', evento);
+    
+      
